@@ -20,7 +20,7 @@
             UserService.getPostDetails()
                 .then(function (post) {
                     $scope.posts = post;
-                    console.log($scope.posts )
+                    console.log($scope.posts)
                 })
                 .catch(function (error) {
                     FlashService.Error(error);
