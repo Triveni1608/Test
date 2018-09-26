@@ -1,71 +1,76 @@
 ﻿
-<div>
-    <table border="1">
+
+
+<div class="table-responsive">
+    <table border="1"  class="table">
         <tr>
             <th>Id</th>
             <th>Title</th>
             <th>Body</th>
-            <th>Action</th>
+            <th style="width: 108px;">Action</th>
         </tr>
-        <tr ng-repeat="post in posts">
+        <tr ng-if="posts && posts.length>0" ng-repeat="post in posts">
             <td><a href="http://localhost:3000/app/#/post-details?id={{post.id}}">{{post.id}}</a></td>
             <td>{{post.title}}</td>
             <td>{{post.body}}</td>
-            <td> <button type="button" class="btn btn-info btn-lg" data-toggle="modal" ng-click="openEditModal(post)">Edit</button>
-                <button type="button" class="btn btn-info btn-lg" data-toggle="modal" ng-click="openDeleteModal(post.id)">Delete</button>
-            </td>  
-        
+            <td>
+                <a href="javascript:void();" class="btn btn-primary a-btn-slide-text" ng-click="openEditModal(post)">
+                    <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+                </a>
+                <a href="javascript:void();" class="btn btn-primary a-btn-slide-text" ng-click="openDeleteModal(post.id)">
+                    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                </a>
+            </td>
     </table>
-
 </div>
 
 
 <!-- Modal -->
 <div id="myModal" class="modal fade" role="dialog">
-  <div class="modal-dialog">
+    <div class="modal-dialog">
 
-    <!-- Modal content-->
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Edit Post</h4>
-      </div>
-      <div class="modal-body">
-        <div class="form-group">
-            <label for="firstName">Title</label>
-            <input type="text" id="firstName" class="form-control" ng-model="vm.post.title" required />
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Edit Post</h4>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="firstName">Title</label>
+                    <input type="text" id="firstName" class="form-control" ng-model="vm.post.title" required />
+                </div>
+                <div class="form-group">
+                    <label for="lastName">Body</label>
+                    <input type="text" id="lastName" class="form-control" ng-model="vm.post.body" required />
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-default" ng-click="editPost();">Update</button>
+            </div>
         </div>
-        <div class="form-group">
-            <label for="lastName">Body</label>
-            <input type="text" id="lastName" class="form-control" ng-model="vm.post.body" required />
-        </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-default" ng-click="editPost();">Update</button>
-      </div>
+
     </div>
-
-  </div>
 </div>
 
 <div id="myModalForDelete" class="modal fade" role="dialog">
-  <div class="modal-dialog">
+    <div class="modal-dialog">
 
-    <!-- Modal content-->
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Delete Post</h4>
-      </div>
-      <div class="modal-body">
-        Are you sure , you want to delete the post.
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-default" ng-click="deletePost();">Delete</button>
-      </div>
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Delete Post</h4>
+            </div>
+            <div class="modal-body">
+                Are you sure , you want to delete the post.
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-default" ng-click="deletePost();">Delete</button>
+            </div>
+        </div>
+
     </div>
-
-  </div>
 </div>

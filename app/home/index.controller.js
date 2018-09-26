@@ -9,6 +9,7 @@
         var vm = this;
 
         vm.posts = null;
+        vm.sortedDataARRAY = [];
 
         initController();
 
@@ -16,6 +17,21 @@
             // get current user
             UserService.GetAllPost().then(function (post) {
                 vm.posts = post;
+                var sortedData = {};
+                for(var i in vm.posts){
+                    if(!sortedData[vm.posts[i].userId]){
+                        sortedData[vm.posts[i].userId] = 1;
+                    } else {
+                        sortedData[vm.posts[i].userId] = sortedData[vm.posts[i].userId] + 1;
+                    }
+                }
+                for (var key in sortedData) {
+                    var data = {
+                        text: "User" + key,
+                        values: [sortedData[key]]
+                    }
+                    vm.sortedDataARRAY.push(data);
+                }
             });
         }
 
@@ -50,27 +66,7 @@
                 textAlpha: 1,
             }
         },
-        series: [{
-            text: "post1",
-            values: [4660],
-            backgroundColor: "#FA6E6E #FA9494",
-        }, {
-            text: "post2",
-            values: [1807],
-            backgroundColor: "#F1C795 #feebd2"
-        }, {
-            text: "post3",
-            values: [1611],
-            backgroundColor: "#FDAA97 #FC9B87"
-        }, {
-            text: "post4",
-            values: [1341],
-            backgroundColor: "#28C2D1"
-        }, {
-            text: "post5",
-            values: [1269],
-            backgroundColor: "#D2D6DE",
-        }]
+        series: vm.sortedDataARRAY
        }
     }
 

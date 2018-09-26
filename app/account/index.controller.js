@@ -7,7 +7,6 @@
 
     function Controller($window, UserService, FlashService, $scope) {
         var vm = this;
-
         vm.post = null;
         $scope.posts = [];
         $scope.openEditModal = openEditModal;
@@ -15,16 +14,7 @@
         $scope.deletePost = deletePost;
         $scope.openDeleteModal = openDeleteModal;
         $scope.postId = 0;
-       
-
-        initController();
-
-        function initController() {
-            // get current user
-            UserService.GetCurrent().then(function (user) {
-                getAllPost();
-            });
-        }
+        getAllPost();
 
         function getAllPost() {
             UserService.GetAllPost()
@@ -44,10 +34,9 @@
 
 
         function editPost() {
-
             UserService.editPost(vm.post.id)
                 .then(function () {
-                    FlashService.Success(vm.post.id + " Post Id Updated Successfuly");
+                    FlashService.Success("Post Id" + vm.post.id + " Updated Successfuly");
                     $('#myModal').modal('hide');
                 })
                 .catch(function (error) {
@@ -65,7 +54,7 @@
         function deletePost() {
             UserService.deletePost(vm.postId)
                 .then(function () {
-                    FlashService.Success(vm.postId + " Post Id Deleted Successfuly");
+                    FlashService.Success("Post Id" + vm.postId + " Deleted Successfuly");
                     $('#myModalForDelete').modal('hide');
                 })
                 .catch(function (error) {
@@ -73,7 +62,7 @@
                 });
         }
 
-        
+
 
     }
 

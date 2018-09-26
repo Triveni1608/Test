@@ -9,11 +9,12 @@
         var vm = this;
 
         $scope.posts = null;
-        $scope.id= 0;
+        $scope.id= 1;
 
         initController();
 
         function initController() {
+            if($location.search().id)
             $scope.id = $location.search().id;
            getPostDetails();
 
