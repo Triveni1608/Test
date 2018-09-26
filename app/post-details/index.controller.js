@@ -6,8 +6,6 @@
         .controller('PostDetails.IndexController', Controller);
 
     function Controller(UserService,$scope,FlashService, $location) {
-        var vm = this;
-
         $scope.posts = null;
         $scope.id= 1;
 

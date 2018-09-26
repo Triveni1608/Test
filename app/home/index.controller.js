@@ -6,23 +6,21 @@
         .controller('Home.IndexController', Controller);
 
     function Controller(UserService,$scope) {
-        var vm = this;
-
-        vm.posts = null;
-        vm.sortedDataARRAY = [];
+        $scope.posts = null;
+        $scope.sortedDataARRAY = [];
 
         initController();
 
         function initController() {
             // get current user
             UserService.GetAllPost().then(function (post) {
-                vm.posts = post;
+                $scope.posts = post;
                 var sortedData = {};
-                for(var i in vm.posts){
-                    if(!sortedData[vm.posts[i].userId]){
-                        sortedData[vm.posts[i].userId] = 1;
+                for(var i in $scope.posts){
+                    if(!sortedData[$scope.posts[i].userId]){
+                        sortedData[$scope.posts[i].userId] = 1;
                     } else {
-                        sortedData[vm.posts[i].userId] = sortedData[vm.posts[i].userId] + 1;
+                        sortedData[$scope.posts[i].userId] = sortedData[$scope.posts[i].userId] + 1;
                     }
                 }
                 for (var key in sortedData) {
@@ -30,7 +28,7 @@
                         text: "User" + key,
                         values: [sortedData[key]]
                     }
-                    vm.sortedDataARRAY.push(data);
+                    $scope.sortedDataARRAY.push(data);
                 }
             });
         }
@@ -66,7 +64,7 @@
                 textAlpha: 1,
             }
         },
-        series: vm.sortedDataARRAY
+        series: $scope.sortedDataARRAY
        }
     }
 
