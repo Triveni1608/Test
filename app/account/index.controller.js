@@ -15,6 +15,7 @@
         $scope.deletePost = deletePost;
         $scope.openDeleteModal = openDeleteModal;
         $scope.postId = 0;
+       
 
         initController();
 
@@ -72,6 +73,7 @@
                 });
         }
 
+        
 
     }
 

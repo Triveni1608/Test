@@ -8,14 +8,14 @@
     function Controller(UserService,$scope) {
         var vm = this;
 
-        vm.user = null;
+        vm.posts = null;
 
         initController();
 
         function initController() {
             // get current user
-            UserService.GetCurrent().then(function (user) {
-                vm.user = user;
+            UserService.GetAllPost().then(function (post) {
+                vm.posts = post;
             });
         }
 
@@ -51,23 +51,23 @@
             }
         },
         series: [{
-            text: "10.0.0.80",
+            text: "post1",
             values: [4660],
             backgroundColor: "#FA6E6E #FA9494",
         }, {
-            text: "167.114.156.198",
+            text: "post2",
             values: [1807],
             backgroundColor: "#F1C795 #feebd2"
         }, {
-            text: "103.24.77.25",
+            text: "post3",
             values: [1611],
             backgroundColor: "#FDAA97 #FC9B87"
         }, {
-            text: "46.4.68.142",
+            text: "post4",
             values: [1341],
             backgroundColor: "#28C2D1"
         }, {
-            text: "10.0.0.117",
+            text: "post5",
             values: [1269],
             backgroundColor: "#D2D6DE",
         }]

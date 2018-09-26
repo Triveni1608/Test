@@ -38,8 +38,8 @@
             return $http.delete('https://jsonplaceholder.typicode.com/posts/'+id).then(handleSuccessForDelete, handleError);
         }
 
-        function getPostDetails(){
-             return $http.get('https://jsonplaceholder.typicode.com/posts/1/comments').then(handleSuccess, handleError);
+        function getPostDetails(id){
+             return $http.get('https://jsonplaceholder.typicode.com/posts/'+id+'/comments').then(handleSuccess, handleError);
         }
 
         function GetAll() {
